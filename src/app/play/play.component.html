@@ -1,0 +1,27 @@
+<div class="flex-page-wrap">
+    <app-hangman-draw [wrongCounter]="wrongCounter"></app-hangman-draw>
+    <div class="letters">
+        <div *ngFor="let letter of word?.letters">
+            <div class="letters__el" *ngIf="letter.checked" [class.letters__el_found]="letter.checked">
+                {{letter.value}}
+            </div>
+            <div class="letters__el" *ngIf="!letter.checked" [class.letters__el_unfound]="!letter.checked">?</div>
+        </div>
+    </div>
+
+    <div class="score">
+        <div *ngIf="word?.finished;then finished else noYetFinished"></div>
+        <ng-template #finished>{{playerName}} You won!!</ng-template>
+        <ng-template #noYetFinished>
+            <div *ngIf="wrongCounter < 11"> {{playerName}}, You have {{11 - wrongCounter}} tries</div>
+            <div *ngIf="wrongCounter == 11">{{playerName}}, You lost</div>
+        </ng-template>
+        <div class="new-game-link" (click)="startGame()"> new game</div>
+    </div>
+    <div class="keyboard">
+        <div *ngFor="let key of keyboard?.letters" class="keyboard__el"
+             [class.keyboard__el_selected]="word?.finished || wrongCounter == 11 || key.checked"
+             (click)="pickKey(key)">{{key.value}}
+        </div>
+    </div>
+</div>

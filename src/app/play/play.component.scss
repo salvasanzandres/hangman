@@ -1,0 +1,50 @@
+.flex-page-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.letters {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    .letters__el {
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        min-width: 1em;
+        border-bottom: 2px solid gray;
+
+        &.letters__el_found {
+            color: green;
+        }
+    }
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    .keyboard__el {
+        padding: 20px;
+        margin: 10px;
+        cursor: pointer;
+        border: 1px solid gray;
+        border-radius: 5px;
+        &.keyboard__el_selected {
+            cursor: auto;
+            background-color: gray;
+        }
+    }
+}
+
+.score {
+    font-size: 1.5em;
+    display: flex;
+    .new-game-link {
+        cursor: pointer;
+        border-left: 1px solid black;
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+}

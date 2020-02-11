@@ -1,0 +1,6 @@
+<form [formGroup]="newPlayerForm">
+    Input your Name:
+    <input type="text" formControlName="name" required>
+    <button (click)="createNewGame()" [disabled]="!newPlayerForm.controls['name'].value">Submit</button>
+</form>
+

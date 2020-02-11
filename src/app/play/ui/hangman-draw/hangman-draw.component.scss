@@ -1,0 +1,83 @@
+$border-color: 2px solid black;
+
+.a {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    .b {
+        width: 5em;
+        height: 10em;
+        &.step-1 {
+            border-bottom:$border-color;
+        }
+        &.step-2 {
+            border-right: $border-color;
+        }
+    }
+    .c {
+        width: 5em;
+        height: 10em;
+        &.step-1 {
+            border-bottom: $border-color;
+        }
+        .d {
+            &.step-3 {
+                border-top: $border-color;
+            }
+            &.step-4 {
+                border-right: $border-color;
+            }
+            height: 3em;
+        }
+        .man {
+            height: 5em;
+            width: 10em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .head {
+                width: 1em;
+                height: 1em;
+                border-radius: 1em;
+                border: $border-color;
+            }
+            .neck {
+                height: 1em;
+                border-left: $border-color;
+            }
+            .up-body {
+                display: flex;
+                .up-body__left {
+                    width: 1em;
+                    border-right: $border-color;
+                    &.step-7 {
+                        border-bottom: $border-color;
+                    }
+                }
+                .up-body__right {
+                    width: 1em;
+                    &.step-8 {
+                        border-bottom: $border-color;
+                    }
+                }
+            }
+            .down-body {
+                display: flex;
+                .down-body__left {
+                    width: 1em;
+                    height: 2em;
+                    border-right: $border-color;
+                    &.step-10 {
+                        border-bottom: $border-color;
+                    }
+                }
+                .down-body__right {
+                    width: 1em;
+                    &.step-11 {
+                        border-bottom: $border-color;
+                    }
+                }
+            }
+        }
+    }
+}
