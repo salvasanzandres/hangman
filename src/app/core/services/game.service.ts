@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 import {Word, Letter} from '../models/word';
-import {map} from 'rxjs/internal/operators';
+
 
 @Injectable()
 export class GameService {
-    private dictionaryUrl = 'https://random-word-api.herokuapp.com/word?key=3VCGERNN&number=1';
+    private dictionaryUrl = 'https://api.datamuse.com/words?rel_jja=yellow';
     public word: Word;
     public keyboard: Word;
 
@@ -23,25 +24,25 @@ export class GameService {
     }
 
     pickKey(key: Letter): boolean {
-        if (this.hasLetter(key.value)) {
-            this.markWordAsChecked(key.value);
-            this.word.finished = this.isAllChecked();
+        if (this.hasWordLetter(key.value)) {
+            this.markLetterAsChecked(key.value);
+            this.word.finished = this.isAllCheckedInWord();
         }
         this.markKeyboardAsChecked(key.value);
-        return this.hasLetter(key.value);
+        return this.hasWordLetter(key.value);
     }
 
     private getWord(): Observable<string> {
         return this.httpClient.get(this.dictionaryUrl).pipe(map(value => {
-            return value[0];
+            return value[Math.floor(Math.random() * 100)].word;
         }));
     }
 
-    private hasLetter(letter: string): boolean {
+    private hasWordLetter(letter: string): boolean {
         return this.word.letters.some(l => l.value === letter);
     }
 
-    private markWordAsChecked(value: string) {
+    private markLetterAsChecked(value: string) {
         for (const element of this.word.letters) {
             if (element.value === value) {
                 element.checked = true;
@@ -54,7 +55,7 @@ export class GameService {
         this.keyboard.letters[index].checked = true;
     }
 
-    private isAllChecked() {
+    private isAllCheckedInWord() {
         return !this.word.letters.some(l => !l.checked);
     }
 }

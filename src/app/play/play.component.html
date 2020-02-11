@@ -2,10 +2,10 @@
     <app-hangman-draw [wrongCounter]="wrongCounter"></app-hangman-draw>
     <div class="letters">
         <div *ngFor="let letter of word?.letters">
-            <div class="letters__el" *ngIf="letter.checked" [class.letters__el_found]="letter.checked">
+            <div class="letters__el" *ngIf="letter.checked || wrongCounter == 11" [class.letters__el_found]="letter.checked">
                 {{letter.value}}
             </div>
-            <div class="letters__el" *ngIf="!letter.checked" [class.letters__el_unfound]="!letter.checked">?</div>
+            <div class="letters__el" *ngIf="!letter.checked && wrongCounter != 11" [class.letters__el_unfound]="!letter.checked">?</div>
         </div>
     </div>
 

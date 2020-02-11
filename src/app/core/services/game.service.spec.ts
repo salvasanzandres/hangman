@@ -1,17 +1,15 @@
-import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import {async, getTestBed, TestBed} from '@angular/core/testing';
 
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {GameService} from './game.service';
-import {Letter} from '../models/word';
-import {exhaustMap} from 'rxjs/internal/operators';
+
 
 describe('GameService', () => {
     let injector: TestBed;
     let service: GameService;
     let httpMock: HttpTestingController;
 
-    const mockedWordList = ['elephant'];
-
+    const mockedWordList = [{word: 'elephant'}];
 
 
     beforeEach(async(() => {
@@ -23,15 +21,15 @@ describe('GameService', () => {
 
     beforeEach(() => {
         injector = getTestBed();
-        service = injector.get(GameService);
-        httpMock = injector.get(HttpTestingController);
+        service = TestBed.inject(GameService);
+        httpMock = TestBed.inject(HttpTestingController);
     });
 
     it('should initialise game', () => {
         service.resetGame().subscribe(response => {
-            expect(response.words.length).toEqual(mockedWordList[0].length);
+            expect(response.words.length).toEqual(mockedWordList[0].word.length);
         });
-        const req = httpMock.expectOne('https://random-word-api.herokuapp.com/word?key=3VCGERNN&number=1');
+        const req = httpMock.expectOne('https://api.datamuse.com/words?rel_jja=yellow');
         expect(req.request.method).toBe('GET');
         req.flush(mockedWordList);
     });

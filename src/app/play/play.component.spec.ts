@@ -1,9 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {of} from 'rxjs';
 
 import {PlayComponent} from './play.component';
 import {AuthService} from '../core/services/auth.service';
 import {GameService} from '../core/services/game.service';
-import {of} from 'rxjs';
+
 
 describe('PlayComponent', () => {
     let component: PlayComponent;

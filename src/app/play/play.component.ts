@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
-
 import {AuthService} from '../core/services/auth.service';
 import {GameService} from '../core/services/game.service';
 import {Letter, Word} from '../core/models/word';
+
 
 @Component({
     selector: 'app-play',
@@ -11,8 +11,8 @@ import {Letter, Word} from '../core/models/word';
     styleUrls: ['./play.component.scss']
 })
 export class PlayComponent implements OnInit {
-    wrongCounter = 0;
-    playerName: string;
+    public wrongCounter = 0;
+    public playerName: string;
     public word: Word;
     public keyboard: Word;
 
